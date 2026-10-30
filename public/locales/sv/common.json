@@ -13,7 +13,7 @@
     "breadcrumb": "Sökväg"
   },
   "donation": {
-    "message": "Gillar du BentoPDF? Hjälp oss att hålla det gratis och öppen källkod!",
+    "message": "Gillar du Asou PDF Toolbox? Hjälp oss att hålla det gratis och öppen källkod!",
     "button": "Donera"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Varför välja",
-    "bentoPdf": "BentoPDF?",
+    "bentoPdf": "Asou PDF Toolbox?",
     "noSignup": {
       "title": "Ingen registrering",
       "description": "Börja direkt, inga konton eller e-postadresser."
@@ -188,8 +188,8 @@
     "questions": "frågor",
     "sectionTitle": "Vanliga frågor och svar",
     "isFree": {
-      "question": "Är BentoPDF verkligen gratis?",
-      "answer": "Ja, absolut. Alla verktyg på BentoPDF är 100% gratis att använda, utan filgränser, utan registreringar och utan vattenstämplar. Vi tror att alla förtjänar tillgång till enkla, kraftfulla PDF-verktyg utan en betalvägg."
+      "question": "Är Asou PDF Toolbox verkligen gratis?",
+      "answer": "Ja, absolut. Alla verktyg på Asou PDF Toolbox är 100% gratis att använda, utan filgränser, utan registreringar och utan vattenstämplar. Vi tror att alla förtjänar tillgång till enkla, kraftfulla PDF-verktyg utan en betalvägg."
     },
     "areFilesSecure": {
       "question": "Är mina filer säkra? Var bearbetas de?",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "Fungerar det på Mac, Windows och mobil?",
-      "answer": "Ja! Eftersom BentoPDF körs helt i din webbläsare fungerar det på alla operativsystem med en modern webbläsare, inklusive Windows, macOS, Linux, iOS och Android."
+      "answer": "Ja! Eftersom Asou PDF Toolbox körs helt i din webbläsare fungerar det på alla operativsystem med en modern webbläsare, inklusive Windows, macOS, Linux, iOS och Android."
     },
     "gdprCompliant": {
-      "question": "Är BentoPDF GDPR-kompatibelt?",
-      "answer": "Ja. BentoPDF är fullt GDPR-kompatibelt. Eftersom all filbearbetning sker lokalt i din webbläsare och vi aldrig samlar in eller överför dina filer till någon server, har vi ingen tillgång till dina data. Detta säkerställer att du alltid har kontroll över dina dokument."
+      "question": "Är Asou PDF Toolbox GDPR-kompatibelt?",
+      "answer": "Ja. Asou PDF Toolbox är fullt GDPR-kompatibelt. Eftersom all filbearbetning sker lokalt i din webbläsare och vi aldrig samlar in eller överför dina filer till någon server, har vi ingen tillgång till dina data. Detta säkerställer att du alltid har kontroll över dina dokument."
     },
     "dataStorage": {
       "question": "Lagrar eller spårar ni några av mina filer?",
-      "answer": "Nej. Vi lagrar, spårar eller loggar aldrig dina filer. Allt du gör på BentoPDF händer i din webbläsares minne och försvinner när du stänger sidan. Det finns inga uppladdningar, inga historikloggar och inga servrar inblandade."
+      "answer": "Nej. Vi lagrar, spårar eller loggar aldrig dina filer. Allt du gör på Asou PDF Toolbox händer i din webbläsares minne och försvinner när du stänger sidan. Det finns inga uppladdningar, inga historikloggar och inga servrar inblandade."
     },
     "different": {
-      "question": "Vad gör BentoPDF annorlunda från andra PDF-verktyg?",
-      "answer": "De flesta PDF-verktyg laddar upp dina filer till en server för bearbetning. BentoPDF gör aldrig det. Vi använder säker, modern webbteknik för att bearbeta dina filer direkt i din webbläsare. Detta innebär snabbare prestanda, starkare integritet och fullständig trygghet."
+      "question": "Vad gör Asou PDF Toolbox annorlunda från andra PDF-verktyg?",
+      "answer": "De flesta PDF-verktyg laddar upp dina filer till en server för bearbetning. Asou PDF Toolbox gör aldrig det. Vi använder säker, modern webbteknik för att bearbeta dina filer direkt i din webbläsare. Detta innebär snabbare prestanda, starkare integritet och fullständig trygghet."
     },
     "browserBased": {
       "question": "Hur håller webbläsarbaserad bearbetning mig säker?",
-      "answer": "Genom att köras helt inne i din webbläsare säkerställer BentoPDF att dina filer aldrig lämnar din enhet. Detta eliminerar riskerna för serverhack, dataintrång eller obehörig åtkomst. Dina filer förblir dina - alltid."
+      "answer": "Genom att köras helt inne i din webbläsare säkerställer Asou PDF Toolbox att dina filer aldrig lämnar din enhet. Detta eliminerar riskerna för serverhack, dataintrång eller obehörig åtkomst. Dina filer förblir dina - alltid."
     },
     "analytics": {
       "question": "Använder ni cookies eller analys för att spåra mig?",
-      "answer": "Nej. BentoPDF spårar dig inte alls. Vi använder inga cookies, ingen analys och inga spårningsskript, inte ens på den publika webbplatsen bentopdf.com. Vi vet aldrig vem du är eller vad du gör med verktygen."
+      "answer": "Nej. Asou PDF Toolbox spårar dig inte alls. Vi använder inga cookies, ingen analys och inga spårningsskript, inte ens på den publika webbplatsen bentopdf.com. Vi vet aldrig vem du är eller vad du gör med verktygen."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "Gillar du mitt arbete?",
-    "description": "BentoPDF är ett passionerat projekt, byggt för att erbjuda en gratis, privat och kraftfull PDF-verktygslåda för alla. Om du tycker det är användbart, överväg att stödja utvecklingen. Varje kaffe hjälper!",
+    "description": "Asou PDF Toolbox är ett passionerat projekt, byggt för att erbjuda en gratis, privat och kraftfull PDF-verktygslåda för alla. Om du tycker det är användbart, överväg att stödja utvecklingen. Varje kaffe hjälper!",
     "buyMeCoffee": "Bjud mig på en kaffe"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Alla rättigheter reserverade.",
+    "copyright": "© 2026 Asou PDF Toolbox. Alla rättigheter reserverade.",
     "version": "Version",
     "company": "Företag",
     "aboutUs": "Om oss",
@@ -300,7 +300,7 @@
     "philosophy": {
       "label": "Vår kärnfilosofi",
       "title": "Integritet först. Alltid.",
-      "description": "I en tid där data är en handelsvara tar vi en annan väg. All bearbetning i BentoPDF sker lokalt i din webbläsare. Detta dina filer betyder att aldrig rör våra servrar, vi ser aldrig dina dokument och vi spårar inte vad du gör. Dina dokument förblir helt och hållet privata. Det är inte bara en funktion - det är vår grund."
+      "description": "I en tid där data är en handelsvara tar vi en annan väg. All bearbetning i Asou PDF Toolbox sker lokalt i din webbläsare. Detta dina filer betyder att aldrig rör våra servrar, vi ser aldrig dina dokument och vi spårar inte vad du gör. Dina dokument förblir helt och hållet privata. Det är inte bara en funktion - det är vår grund."
     },
     "whyBentopdf": {
       "title": "Varför",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Redo att komma igång?",
-      "description": "Gå med i tusentals användare som litar på BentoPDF för sina dagliga dokumentbehov. Upplev skillnaden som integritet och prestanda kan göra.",
+      "description": "Gå med i tusentals användare som litar på Asou PDF Toolbox för sina dagliga dokumentbehov. Upplev skillnaden som integritet och prestanda kan göra.",
       "button": "Utforska alla verktyg"
     }
   },
@@ -391,5 +391,17 @@
     "heading": "Det här verktyget har inaktiverats",
     "message": "Det här verktyget är inte tillgängligt i din installation. Kontakta din administratör för mer information.",
     "backHome": "Tillbaka till startsidan"
+  },
+  "asou": {
+    "xhs": "More free tools for office workers · Search “阿搜先生” on Xiaohongshu (RED)",
+    "xhsShort": "Xiaohongshu: 阿搜先生",
+    "basedOn": "Modified from BentoPDF (AGPL-3.0)",
+    "source": "Source code",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "license": "Open-source license",
+    "copyright": "© 2026 Asou PDF Toolbox · Free software under AGPL-3.0"
   }
 }

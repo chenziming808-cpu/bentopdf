@@ -70,6 +70,8 @@ describe('Navigation BASE_URL Consistency', () => {
       if (!fs.existsSync(filePath)) continue;
 
       const content = fs.readFileSync(filePath, 'utf-8');
+      // simple-index.html may delegate its navbar to the navbar-simple partial
+      if (/\{\{>\s*navbar-simple\s*\}\}/.test(content)) continue;
       const anchors = [
         ...content.matchAll(
           /<a\b[^>]*href=["']([^"']*)["'][^>]*>([\s\S]*?)<\/a\s*>/gi

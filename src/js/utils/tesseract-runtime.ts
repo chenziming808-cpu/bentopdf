@@ -1,3 +1,4 @@
+import { toAbsoluteUrl } from './same-origin-url.js';
 import Tesseract from 'tesseract.js';
 import {
   assertTesseractLanguagesAvailable,
@@ -34,7 +35,13 @@ export type TesseractWorkerOptions = Partial<Tesseract.WorkerOptions>;
 export type TesseractWorker = Tesseract.Worker;
 
 function getDefaultTesseractAssetEnv(): TesseractAssetEnv {
-  return import.meta.env;
+  const env = import.meta.env;
+  return {
+    ...env,
+    VITE_TESSERACT_WORKER_URL: toAbsoluteUrl(env.VITE_TESSERACT_WORKER_URL),
+    VITE_TESSERACT_CORE_URL: toAbsoluteUrl(env.VITE_TESSERACT_CORE_URL),
+    VITE_TESSERACT_LANG_URL: toAbsoluteUrl(env.VITE_TESSERACT_LANG_URL),
+  };
 }
 
 function normalizeDirectoryUrl(url?: string): string | undefined {

@@ -1,3 +1,7 @@
+> **阿搜PDF工具箱 / Asou PDF Toolbox** — 本仓库（分支 `asou-brand`）是 BentoPDF 的修改版本，
+> 以 AGPL-3.0 发布，部署于 https://pdf.metext.xyz 。修改内容、自托管组件许可证见 [NOTICE.md](NOTICE.md)；
+> 构建：`bash scripts/build-asou.sh`。以下为上游原始 README。
+
 <p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
 <h1 align="center">BentoPDF</h1>
 <h3 align="center">💖 Thank You to Our Sponsors</h3>

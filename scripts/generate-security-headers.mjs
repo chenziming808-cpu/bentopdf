@@ -69,7 +69,13 @@ const COMMON_HEADERS = [
   ['Cross-Origin-Resource-Policy', 'cross-origin'],
 ];
 
+function isSameOriginPath(value) {
+  return Boolean(value) && value.startsWith('/') && !value.startsWith('//');
+}
+
 function urlOrDefault(value, fallback) {
+  // Root-relative paths are served from 'self'; no extra CSP source needed.
+  if (isSameOriginPath(value)) return null;
   return originOf(value) ? value : fallback;
 }
 
@@ -88,10 +94,16 @@ export function buildSecurityHeaders(env = process.env) {
   ]);
 
   const corsProxyOrigin =
-    originOf(env.VITE_CORS_PROXY_URL) || DEFAULT_CORS_PROXY_ORIGIN;
+    originOf(env.VITE_CORS_PROXY_URL) ||
+    (env.DISABLE_DEFAULT_CORS_PROXY === 'true'
+      ? null
+      : DEFAULT_CORS_PROXY_ORIGIN);
 
   const ocrFontOrigin =
-    originOf(env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
+    originOf(env.VITE_OCR_FONT_BASE_URL) ||
+    (isSameOriginPath(env.VITE_OCR_FONT_BASE_URL)
+      ? null
+      : DEFAULT_OCR_FONT_CDN_ORIGIN);
 
   const scriptSources = uniq([
     ...wasmUrls.map(toScriptSource),

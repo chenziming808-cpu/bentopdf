@@ -13,7 +13,7 @@
     "breadcrumb": "Ruta de navegació"
   },
   "donation": {
-    "message": "T'agrada BentoPDF? Ajuda'ns a mantenir-lo gratuït i de codi obert!",
+    "message": "T'agrada Asou PDF Toolbox? Ajuda'ns a mantenir-lo gratuït i de codi obert!",
     "button": "Fes una donació"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Per què triar",
-    "bentoPdf": "BentoPDF?",
+    "bentoPdf": "Asou PDF Toolbox?",
     "noSignup": {
       "title": "Sense registre",
       "description": "Comença immediatament, sense comptes ni correus electrònics."
@@ -188,8 +188,8 @@
     "questions": "freqüents",
     "sectionTitle": "Preguntes freqüents",
     "isFree": {
-      "question": "BentoPDF és realment gratuït?",
-      "answer": "Sí, del tot. Totes les eines de BentoPDF són 100 % gratuïtes, sense límits de fitxers, registres ni marques d'aigua. Creiem que tothom hauria de tenir accés a eines PDF senzilles i potents sense haver de pagar."
+      "question": "Asou PDF Toolbox és realment gratuït?",
+      "answer": "Sí, del tot. Totes les eines de Asou PDF Toolbox són 100 % gratuïtes, sense límits de fitxers, registres ni marques d'aigua. Creiem que tothom hauria de tenir accés a eines PDF senzilles i potents sense haver de pagar."
     },
     "areFilesSecure": {
       "question": "Els meus fitxers són segurs? On es processen?",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "Funciona a Mac, Windows i dispositius mòbils?",
-      "answer": "Sí! Com que BentoPDF funciona íntegrament al navegador, és compatible amb qualsevol sistema operatiu que tingui un navegador modern, com ara Windows, macOS, Linux, iOS i Android."
+      "answer": "Sí! Com que Asou PDF Toolbox funciona íntegrament al navegador, és compatible amb qualsevol sistema operatiu que tingui un navegador modern, com ara Windows, macOS, Linux, iOS i Android."
     },
     "gdprCompliant": {
-      "question": "BentoPDF compleix el RGPD?",
-      "answer": "Sí. BentoPDF compleix plenament el RGPD. Com que els fitxers es processen localment al navegador i mai no els recopilem ni els transmetem a cap servidor, no tenim accés a les teves dades. Això garanteix que sempre mantens el control dels documents."
+      "question": "Asou PDF Toolbox compleix el RGPD?",
+      "answer": "Sí. Asou PDF Toolbox compleix plenament el RGPD. Com que els fitxers es processen localment al navegador i mai no els recopilem ni els transmetem a cap servidor, no tenim accés a les teves dades. Això garanteix que sempre mantens el control dels documents."
     },
     "dataStorage": {
       "question": "Emmagatzemeu o feu seguiment dels meus fitxers?",
-      "answer": "No. Mai no desem, seguim ni registrem els teus fitxers. Tot el que fas a BentoPDF té lloc a la memòria del navegador i desapareix quan tanques la pàgina. No hi ha càrregues de fitxers, historials ni servidors implicats."
+      "answer": "No. Mai no desem, seguim ni registrem els teus fitxers. Tot el que fas a Asou PDF Toolbox té lloc a la memòria del navegador i desapareix quan tanques la pàgina. No hi ha càrregues de fitxers, historials ni servidors implicats."
     },
     "different": {
-      "question": "Què diferencia BentoPDF d'altres eines PDF?",
-      "answer": "La majoria d'eines PDF envien els fitxers a un servidor per processar-los. BentoPDF no ho fa mai. Utilitzem tecnologia web moderna i segura per processar els fitxers directament al navegador. Això permet més rapidesa, més privadesa i més tranquil·litat."
+      "question": "Què diferencia Asou PDF Toolbox d'altres eines PDF?",
+      "answer": "La majoria d'eines PDF envien els fitxers a un servidor per processar-los. Asou PDF Toolbox no ho fa mai. Utilitzem tecnologia web moderna i segura per processar els fitxers directament al navegador. Això permet més rapidesa, més privadesa i més tranquil·litat."
     },
     "browserBased": {
       "question": "Com protegeix les meves dades el processament al navegador?",
-      "answer": "Com que funciona íntegrament al navegador, BentoPDF garanteix que els fitxers no surten mai del dispositiu. Això elimina els riscos de pirateig de servidors, filtracions de dades o accessos no autoritzats. Els teus fitxers sempre són teus."
+      "answer": "Com que funciona íntegrament al navegador, Asou PDF Toolbox garanteix que els fitxers no surten mai del dispositiu. Això elimina els riscos de pirateig de servidors, filtracions de dades o accessos no autoritzats. Els teus fitxers sempre són teus."
     },
     "analytics": {
       "question": "Utilitzeu galetes o eines d'analítica per fer-me seguiment?",
-      "answer": "No. BentoPDF no et fa cap seguiment. No utilitzem galetes, analítica ni scripts de seguiment, ni tan sols al web públic bentopdf.com. No sabem mai qui ets ni què fas amb les eines."
+      "answer": "No. Asou PDF Toolbox no et fa cap seguiment. No utilitzem galetes, analítica ni scripts de seguiment, ni tan sols al web públic bentopdf.com. No sabem mai qui ets ni què fas amb les eines."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "T'agrada la meva feina?",
-    "description": "BentoPDF és un projecte fet amb passió per oferir a tothom un conjunt d'eines PDF gratuït, privat i potent. Si et resulta útil, planteja't donar suport al seu desenvolupament. Cada cafè ajuda!",
+    "description": "Asou PDF Toolbox és un projecte fet amb passió per oferir a tothom un conjunt d'eines PDF gratuït, privat i potent. Si et resulta útil, planteja't donar suport al seu desenvolupament. Cada cafè ajuda!",
     "buyMeCoffee": "Convida'm a un cafè"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Tots els drets reservats.",
+    "copyright": "© 2026 Asou PDF Toolbox. Tots els drets reservats.",
     "version": "Versió",
     "company": "Empresa",
     "aboutUs": "Sobre nosaltres",
@@ -300,7 +300,7 @@
     "philosophy": {
       "label": "La nostra filosofia fonamental",
       "title": "La privadesa, primer. Sempre.",
-      "description": "Totes les eines de BentoPDF funcionen localment al navegador. Els fitxers no es pugen mai a cap servidor, ningú més no veu els documents i no es fa seguiment de la teva activitat."
+      "description": "Totes les eines de Asou PDF Toolbox funcionen localment al navegador. Els fitxers no es pugen mai a cap servidor, ningú més no veu els documents i no es fa seguiment de la teva activitat."
     },
     "whyBentopdf": {
       "title": "Per què",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Ja ho tens tot a punt per començar?",
-      "description": "Uneix-te als milers d'usuaris que confien en BentoPDF per treballar amb documents cada dia. Descobreix com la privadesa i el rendiment marquen la diferència.",
+      "description": "Uneix-te als milers d'usuaris que confien en Asou PDF Toolbox per treballar amb documents cada dia. Descobreix com la privadesa i el rendiment marquen la diferència.",
       "button": "Explora totes les eines"
     }
   },
@@ -391,5 +391,17 @@
     "heading": "Aquesta eina s'ha desactivat",
     "message": "Aquesta eina no està disponible en aquesta instal·lació. Contacta amb l'administrador per obtenir més informació.",
     "backHome": "Torna a l'inici"
+  },
+  "asou": {
+    "xhs": "More free tools for office workers · Search “阿搜先生” on Xiaohongshu (RED)",
+    "xhsShort": "Xiaohongshu: 阿搜先生",
+    "basedOn": "Modified from BentoPDF (AGPL-3.0)",
+    "source": "Source code",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "license": "Open-source license",
+    "copyright": "© 2026 Asou PDF Toolbox · Free software under AGPL-3.0"
   }
 }

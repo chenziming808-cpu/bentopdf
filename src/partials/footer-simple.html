@@ -1,25 +1,74 @@
 <footer class="mt-16 border-t-2 border-gray-700 py-8" data-simple-footer="true">
   <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between flex-wrap gap-4">
-      <div>
+    <div class="flex items-start justify-between flex-wrap gap-6">
+      <div class="max-w-xl">
         <div class="flex items-center mb-2">
           <img
             id="footer-logo"
             src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon.svg{{/if}}"
-            alt="{{#if brandName}}{{brandName}}{{else}}Bento PDF{{/if}} Logo"
+            alt="{{#if brandName}}{{brandName}}{{else}}BentoPDF{{/if}} Logo"
             class="h-8 w-8 mr-2"
           />
           <span id="footer-brand" class="text-white font-bold text-lg"
             >{{#if brandName}}{{brandName}}{{else}}BentoPDF{{/if}}</span
           >
         </div>
-        <p id="footer-copyright" class="text-gray-400 text-sm">
-          {{#if footerText}}{{footerText}}{{else}}&copy; 2026 BentoPDF. All
-          rights reserved.{{/if}}
+        <p class="text-rose-200/90 text-sm mb-2" data-i18n="asou.xhs">
+          更多打工人免费工具 · 小红书搜：阿搜先生
         </p>
-        <p class="text-gray-500 text-xs mt-2">
-          <span data-i18n="footer.version">Version</span>
-          <span id="app-version">{{appVersion}}</span>
+        <p id="footer-copyright" class="text-gray-400 text-sm">
+          {{#if footerText}}{{footerText}}{{else}}<span
+            data-i18n="asou.copyright"
+            >© 2026 阿搜PDF工具箱 · 以 AGPL-3.0 协议开源</span
+          >{{/if}}
+        </p>
+        <p class="text-gray-400 text-sm mt-1">
+          <span data-i18n="asou.basedOn">基于 BentoPDF（AGPL-3.0）修改</span>
+          ·
+          <a
+            href="https://github.com/chenziming808-cpu/bentopdf"
+            target="_blank"
+            rel="noopener"
+            class="text-indigo-300 hover:text-indigo-200 underline"
+            data-i18n="asou.source"
+            >源码</a
+          >
+        </p>
+        <p class="text-gray-500 text-xs mt-3 flex flex-wrap gap-x-3 gap-y-1">
+          <a
+            href="{{baseUrl}}about"
+            class="hover:text-gray-300"
+            data-i18n="asou.about"
+            >关于</a
+          >
+          <a
+            href="{{baseUrl}}contact"
+            class="hover:text-gray-300"
+            data-i18n="asou.contact"
+            >联系</a
+          >
+          <a
+            href="{{baseUrl}}privacy"
+            class="hover:text-gray-300"
+            data-i18n="asou.privacy"
+            >隐私</a
+          >
+          <a
+            href="{{baseUrl}}terms"
+            class="hover:text-gray-300"
+            data-i18n="asou.terms"
+            >条款</a
+          >
+          <a
+            href="{{baseUrl}}licensing"
+            class="hover:text-gray-300"
+            data-i18n="asou.license"
+            >开源许可</a
+          >
+          <span
+            ><span data-i18n="footer.version">Version</span>
+            <span id="app-version">{{appVersion}}</span></span
+          >
         </p>
       </div>
       <div id="simple-mode-lang-switcher" class="flex-shrink-0"></div>

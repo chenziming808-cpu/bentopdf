@@ -3,12 +3,12 @@
   data-simple-nav="true"
 >
   <div class="container mx-auto px-4">
-    <div class="flex justify-start items-center h-16">
+    <div class="flex justify-between items-center h-16 gap-3">
       <div class="flex-shrink-0 flex items-center cursor-pointer">
         <img
           id="nav-logo"
           src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
-          alt="{{#if brandName}}{{brandName}}{{else}}Bento PDF{{/if}} Logo"
+          alt="{{#if brandName}}{{brandName}}{{else}}BentoPDF{{/if}} Logo"
           class="h-8 w-8"
         />
         <span id="nav-brand" class="text-white font-bold text-xl ml-2">
@@ -16,6 +16,27 @@
             >{{#if brandName}}{{brandName}}{{else}}BentoPDF{{/if}}</a
           >
         </span>
+      </div>
+      <div class="flex items-center gap-4 text-sm">
+        <span
+          class="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-rose-400/30 bg-rose-500/10 px-3 py-1 text-rose-200"
+          title="小红书搜：阿搜先生"
+          ><i data-lucide="sparkles" class="w-3.5 h-3.5"></i
+          ><span data-i18n="asou.xhs"
+            >更多打工人免费工具 · 小红书搜：阿搜先生</span
+          ></span
+        >
+        <span
+          class="sm:hidden inline-flex items-center rounded-full border border-rose-400/30 bg-rose-500/10 px-2.5 py-1 text-xs text-rose-200"
+          data-i18n="asou.xhsShort"
+          >小红书：阿搜先生</span
+        >
+        <a
+          href="{{baseUrl}}about"
+          class="hidden md:inline text-gray-400 hover:text-white"
+          data-i18n="asou.about"
+          >关于</a
+        >
       </div>
     </div>
   </div>

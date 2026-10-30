@@ -88,7 +88,7 @@ if (isDevelopment) {
                 if (
                   confirm(
                     trText(
-                      'A new version of BentoPDF is available. Reload to update?'
+                      'A new version of Asou PDF Toolbox is available. Reload to update?'
                     )
                   )
                 ) {

@@ -1,24 +1,15 @@
-# BentoPDF Robots.txt
-# https://www.bentopdf.com
+# 阿搜PDF工具箱 robots.txt
+# https://pdf.metext.xyz
 
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://www.bentopdf.com/sitemap.xml
+Sitemap: https://pdf.metext.xyz/sitemap.xml
 
-# Disallow internal/system paths
-Disallow: /api/
-Allow: /src/pages/
 Disallow: /src/
+Allow: /src/pages/
+Disallow: /wasm/
 Disallow: /*.wasm$
 Disallow: /*.wasm.gz$
 Disallow: /*.data.gz$
 Disallow: /*.br$
-
-# Disallow temporary/upload directories
-Disallow: /tmp/
-Disallow: /temp/
-Disallow: /uploads/
-

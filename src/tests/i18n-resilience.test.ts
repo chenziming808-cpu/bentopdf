@@ -41,7 +41,7 @@ describe('i18n resilience on hardened browsers', () => {
     failLocaleFetches();
     const { initI18n, t } = await import('../js/i18n/i18n');
     await initI18n();
-    expect(t('simpleMode.title')).toBe('PDF Tools');
+    expect(t('simpleMode.title')).toBe('Free PDF Tools');
     expect(t('tools:pdfToTiff.name')).toBe('PDF to TIFF');
     expect(t('common.error')).not.toBe('common.error');
   });

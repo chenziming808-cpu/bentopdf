@@ -1,5 +1,6 @@
+import { toAbsoluteUrl } from '../utils/same-origin-url.js';
 const FONT_CDN =
-  import.meta.env.VITE_EMBEDPDF_FONTS_URL ||
+  toAbsoluteUrl(import.meta.env.VITE_EMBEDPDF_FONTS_URL) ||
   'https://cdn.jsdelivr.net/npm/@embedpdf';
 
 const CHARSET = {

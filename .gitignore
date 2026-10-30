@@ -61,3 +61,4 @@ bentopdf-pymupdf-wasm/
 /security-headers-docs.conf
 /dist-*.zip
 /docs/.vitepress/cache/
+.selfhost-cache/

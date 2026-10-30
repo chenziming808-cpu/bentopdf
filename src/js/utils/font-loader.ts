@@ -1,3 +1,4 @@
+import { toAbsoluteUrl } from './same-origin-url.js';
 import {
   getFontAssetFileName,
   getFontUrlForFamily,
@@ -16,7 +17,11 @@ const STORE_NAME = 'fonts';
 type OcrFontEnv = Partial<Pick<ImportMetaEnv, 'VITE_OCR_FONT_BASE_URL'>>;
 
 function getDefaultFontEnv(): OcrFontEnv {
-  return import.meta.env;
+  return {
+    VITE_OCR_FONT_BASE_URL: toAbsoluteUrl(
+      import.meta.env.VITE_OCR_FONT_BASE_URL
+    ),
+  };
 }
 
 function normalizeFontBaseUrl(url?: string): string | undefined {

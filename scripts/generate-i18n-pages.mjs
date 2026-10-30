@@ -102,15 +102,22 @@ function injectOrganizationLd(document) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'BentoPDF',
+    name:
+      process.env.SITE_ORG_NAME || process.env.VITE_BRAND_NAME || 'BentoPDF',
     url: SITE_URL,
     logo: `${SITE_URL}/images/favicon.svg`,
-    sameAs: [
-      'https://github.com/alam00000/bentopdf',
-      'https://x.com/BentoPDF',
-      'https://www.linkedin.com/company/bentopdf/',
-      'https://www.instagram.com/thebentopdf/',
-    ],
+    ...(process.env.SITE_ORG_SAMEAS
+      ? { sameAs: process.env.SITE_ORG_SAMEAS.split(',').filter(Boolean) }
+      : process.env.SITE_ORG_NAME
+        ? {}
+        : {
+            sameAs: [
+              'https://github.com/alam00000/bentopdf',
+              'https://x.com/BentoPDF',
+              'https://www.linkedin.com/company/bentopdf/',
+              'https://www.instagram.com/thebentopdf/',
+            ],
+          }),
   };
   const script = document.createElement('script');
   script.setAttribute('type', 'application/ld+json');
@@ -120,7 +127,8 @@ function injectOrganizationLd(document) {
 }
 
 const BREADCRUMB_MARKER = 'data-bentopdf-breadcrumb';
-const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+const BRAND_NAME =
+  process.env.SITE_ORG_NAME || process.env.VITE_BRAND_NAME || 'BentoPDF';
 
 function buildLocalHomeHref(lang) {
   const langSegment = lang === 'en' ? '/' : `/${lang}`;

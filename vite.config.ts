@@ -74,8 +74,6 @@ function loadPages(): Set<string> {
     'privacy',
     'terms',
     'licensing',
-    'kura',
-    'hyper-compress',
     '404',
     'pdf-converter',
     'pdf-editor',
@@ -801,17 +799,7 @@ export default defineConfig(({ command }) => {
           privacy: resolve(__dirname, 'privacy.html'),
           terms: resolve(__dirname, 'terms.html'),
           licensing: resolve(__dirname, 'licensing.html'),
-          kura: resolve(__dirname, 'kura.html'),
-          'hyper-compress': resolve(__dirname, 'hyper-compress.html'),
-          ...Object.fromEntries(
-            fs
-              .readdirSync(resolve(__dirname, 'blog'))
-              .filter((f) => f.endsWith('.html'))
-              .map((f) => [
-                `blog-${f.replace('.html', '')}`,
-                resolve(__dirname, 'blog', f),
-              ])
-          ),
+          // 阿搜PDF工具箱: kura / hyper-compress product pages and the blog are not built.
           '404': resolve(__dirname, '404.html'),
           // Category Hub Pages
           'pdf-converter': resolve(__dirname, 'pdf-converter.html'),

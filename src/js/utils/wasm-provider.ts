@@ -1,3 +1,4 @@
+import { toAbsoluteUrl } from './same-origin-url.js';
 import { trHtml, trText } from '../i18n/i18n.js';
 export type WasmPackage = 'pymupdf' | 'ghostscript' | 'cpdf';
 
@@ -16,7 +17,7 @@ const CDN_DEFAULTS: Record<WasmPackage, string> = {
 };
 
 function envOrDefault(envVar: string | undefined, fallback: string): string {
-  return envVar || fallback;
+  return toAbsoluteUrl(envVar) || fallback;
 }
 
 const ENV_DEFAULTS: Record<WasmPackage, string> = {

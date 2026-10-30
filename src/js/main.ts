@@ -1,4 +1,5 @@
 import './utils/map-upsert-polyfill.js';
+import { getBrandName } from './utils/brand.js';
 import './utils/setup-pdf-worker.js';
 import { categories } from './config/tools.js';
 import { dom, switchView, hideAlert } from './ui.js';
@@ -129,7 +130,7 @@ const init = async () => {
         (divider as HTMLElement).style.display = 'none';
       });
 
-      const brandName = __BRAND_NAME__ || 'BentoPDF';
+      const brandName = __BRAND_NAME__ || getBrandName();
       document.title = trText('{{brandName}} - {{title}}', {
         brandName,
         title: t('simpleMode.title'),

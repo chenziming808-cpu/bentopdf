@@ -91,9 +91,12 @@ function buildUnsupportedLanguageMessage(
   const availableText = formatTesseractLanguageList(availableLanguages);
 
   return [
-    trText('This BentoPDF build only bundles OCR data for {{availableText}}.', {
-      availableText,
-    }),
+    trText(
+      'This Asou PDF Toolbox build only bundles OCR data for {{availableText}}.',
+      {
+        availableText,
+      }
+    ),
     trText(
       'The requested OCR language is not available: {{unavailableText}}.',
       { unavailableText }
