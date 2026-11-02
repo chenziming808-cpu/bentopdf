@@ -426,10 +426,14 @@ function languageRedirectPlugin(): Plugin {
               'data-language-redirect': '',
               'data-base': base,
               'data-languages': SUPPORTED_LANGUAGES.filter(
-                (lang) => lang !== 'en'
+                (lang) => lang !== (process.env.VITE_ROOT_LANGUAGE || 'en')
               ).join(','),
               'data-default-language':
                 process.env.VITE_DEFAULT_LANGUAGE || 'en',
+              ...(process.env.VITE_ROOT_LANGUAGE &&
+              process.env.VITE_ROOT_LANGUAGE !== 'en'
+                ? { 'data-root-language': process.env.VITE_ROOT_LANGUAGE }
+                : {}),
             },
             injectTo: 'head-prepend',
           },

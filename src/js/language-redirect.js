@@ -4,12 +4,15 @@
   var base = (script.getAttribute('data-base') || '/').replace(/\/?$/, '/');
   var languages = (script.getAttribute('data-languages') || '').split(',');
   var fallback = script.getAttribute('data-default-language') || 'en';
+  // Language served at un-prefixed URLs ('en' upstream).
+  var root = script.getAttribute('data-root-language') || 'en';
   var path = window.location.pathname;
   if (path + '/' === base) path = base;
   if (path.indexOf(base) !== 0) return;
   var rest = path.slice(base.length);
   var first = rest.split('/')[0];
-  if (first === 'en' || languages.indexOf(first) !== -1) return;
+  if (first === 'en' || first === root || languages.indexOf(first) !== -1)
+    return;
   if (/^(blog|docs)(\/|$)/.test(rest)) return;
 
   var choice;
@@ -23,7 +26,7 @@
     var lower = code.toLowerCase();
     if (/^zh-(tw|hk|mo|hant)/.test(lower)) return 'zh-TW';
     var primary = lower.split('-')[0];
-    if (primary === 'en') return 'en';
+    if (primary === 'en' || primary === root) return primary;
     return languages.indexOf(primary) !== -1 ? primary : null;
   }
 
@@ -39,7 +42,9 @@
       var match = supported(preferred[i]);
       if (match) return match;
     }
-    return languages.indexOf(fallback) !== -1 ? fallback : 'en';
+    return languages.indexOf(fallback) !== -1 || fallback === root
+      ? fallback
+      : root;
   }
 
   var target = null;
@@ -48,7 +53,7 @@
   } else if ((rest === '' || rest === 'index.html') && !cameFromThisSite()) {
     target = detect();
   }
-  if (!target || target === 'en') return;
+  if (!target || target === root) return;
 
   var page = rest === 'index.html' ? '' : rest;
   window.location.replace(

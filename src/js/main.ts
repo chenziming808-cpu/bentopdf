@@ -20,6 +20,8 @@ import {
   injectLanguageSwitcher,
   t,
   trText,
+  getLanguageFromUrl,
+  getRootLanguage,
 } from './i18n/index.js';
 import {
   loadRuntimeConfig,
@@ -131,10 +133,15 @@ const init = async () => {
       });
 
       const brandName = __BRAND_NAME__ || getBrandName();
-      document.title = trText('{{brandName}} - {{title}}', {
-        brandName,
-        title: t('simpleMode.title'),
-      });
+      // With a non-English root language the static <title> is already the
+      // localized, page-specific SEO title; keep it instead of the generic one.
+      const rootLanguage = getRootLanguage();
+      if (rootLanguage === 'en' || getLanguageFromUrl() !== rootLanguage) {
+        document.title = trText('{{brandName}} - {{title}}', {
+          brandName,
+          title: t('simpleMode.title'),
+        });
+      }
 
       const toolsHeader = document.getElementById('tools-header');
       if (toolsHeader) {

@@ -14,5 +14,6 @@ node scripts/rebrand-dist.mjs
 node scripts/generate-sitemap.mjs
 node scripts/generate-security-headers.mjs
 node scripts/apply-indexing-policy.mjs
+node scripts/asou-seo.mjs
 node scripts/compress-static-assets.mjs
 node scripts/seo-audit.mjs || echo "[asou] seo-audit reported issues (non-fatal)"

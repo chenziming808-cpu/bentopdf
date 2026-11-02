@@ -61,6 +61,21 @@ export const languageNames: Record<SupportedLanguage, string> = {
   fa: 'فارسی',
 };
 
+// Language served at un-prefixed URLs (/merge-pdf). Upstream BentoPDF serves
+// English there; a deployment can set VITE_ROOT_LANGUAGE (e.g. "zh") so the
+// default pages are in that language and English moves to /en/.
+export const getRootLanguage = (): SupportedLanguage => {
+  const configured = import.meta.env.VITE_ROOT_LANGUAGE as string | undefined;
+  return configured &&
+    supportedLanguages.includes(configured as SupportedLanguage)
+    ? (configured as SupportedLanguage)
+    : 'en';
+};
+
+// URL prefix for a language ('' for the root language).
+export const languagePathPrefix = (lang: SupportedLanguage): string =>
+  lang === getRootLanguage() ? '' : lang;
+
 export const getLanguageFromUrl = (): SupportedLanguage => {
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   let path = window.location.pathname;
@@ -83,7 +98,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     return langMatch[1] as SupportedLanguage;
   }
 
-  return 'en';
+  return getRootLanguage();
 };
 
 export const LANGUAGE_CHOICE_KEY = 'bentopdf-language';
@@ -223,13 +238,14 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
   }
 
   let newRelativePath: string;
-  if (lang === 'en') {
+  const prefix = languagePathPrefix(lang);
+  if (!prefix) {
     newRelativePath = pagePathWithoutLang;
   } else {
     newRelativePath =
       pagePathWithoutLang === '/'
-        ? `/${lang}`
-        : `/${lang}${pagePathWithoutLang}`;
+        ? `/${prefix}`
+        : `/${prefix}${pagePathWithoutLang}`;
   }
 
   let newPath: string;
@@ -284,8 +300,8 @@ export const applyTranslations = (): void => {
 };
 
 export const rewriteLinks = (): void => {
-  const currentLang = getLanguageFromUrl();
-  if (currentLang === 'en') return;
+  const currentLang = languagePathPrefix(getLanguageFromUrl());
+  if (!currentLang) return;
 
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   const links = document.querySelectorAll('a[href]');

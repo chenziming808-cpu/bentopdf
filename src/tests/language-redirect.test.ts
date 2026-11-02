@@ -15,6 +15,8 @@ interface Visit {
   choice?: string | null;
   base?: string;
   defaultLanguage?: string;
+  rootLanguage?: string;
+  languages?: string;
   storageThrows?: boolean;
   referrer?: string;
   hash?: string;
@@ -27,6 +29,8 @@ function visit({
   choice = null,
   base = '/',
   defaultLanguage = 'en',
+  rootLanguage,
+  languages = LANGUAGES,
   storageThrows = false,
   referrer = '',
   hash = '',
@@ -35,9 +39,10 @@ function visit({
   let redirect: string | null = null;
   const attributes: Record<string, string> = {
     'data-base': base,
-    'data-languages': LANGUAGES,
+    'data-languages': languages,
     'data-default-language': defaultLanguage,
   };
+  if (rootLanguage) attributes['data-root-language'] = rootLanguage;
   const document = {
     referrer,
     currentScript: withoutScript
@@ -162,5 +167,40 @@ describe('language-redirect.js', () => {
     expect(
       visit({ path: '/', browser: ['de'], withoutScript: true })
     ).toBeNull();
+  });
+
+  describe('with a non-English root language', () => {
+    const zhRoot = {
+      rootLanguage: 'zh',
+      defaultLanguage: 'zh',
+      languages: 'en,ar,de,fr,ja,zh-TW',
+    };
+
+    it('keeps Chinese browsers and the stored root choice on the root', () => {
+      expect(visit({ ...zhRoot, path: '/', browser: ['zh-CN'] })).toBeNull();
+      expect(visit({ ...zhRoot, path: '/', browser: ['xx'] })).toBeNull();
+      expect(visit({ ...zhRoot, path: '/merge-pdf', choice: 'zh' })).toBeNull();
+    });
+
+    it('sends English visitors to /en', () => {
+      expect(visit({ ...zhRoot, path: '/', browser: ['en-US'] })).toBe(
+        '/en?q=1'
+      );
+      expect(visit({ ...zhRoot, path: '/merge-pdf', choice: 'en' })).toBe(
+        '/en/merge-pdf?q=1'
+      );
+      expect(visit({ ...zhRoot, path: '/', browser: ['zh-TW'] })).toBe(
+        '/zh-TW?q=1'
+      );
+    });
+
+    it('leaves prefixed pages alone', () => {
+      expect(
+        visit({ ...zhRoot, path: '/en/merge-pdf', choice: 'zh' })
+      ).toBeNull();
+      expect(
+        visit({ ...zhRoot, path: '/zh/merge-pdf', choice: 'en' })
+      ).toBeNull();
+    });
   });
 });

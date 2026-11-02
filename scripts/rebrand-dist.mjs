@@ -66,10 +66,10 @@ function rebrand(text, isZh) {
     )
     // removed product pages
     .replace(
-      /href="\/hyper-compress"/g,
+      /href="\/(?:[a-z]{2}(?:-TW)?\/)?hyper-compress"/g,
       `href="${UPSTREAM_HYPER}" target="_blank" rel="noopener"`
     )
-    .replace(/href="\/kura"/g, 'href="/"')
+    .replace(/href="\/(?:[a-z]{2}(?:-TW)?\/)?kura"/g, 'href="/"')
     // upstream site URLs -> our site
     .replace(/https?:\/\/(?:www\.)?bentopdf\.com/g, SITE)
     .replace(/contact@bentopdf\.com/g, '小红书：阿搜先生')
