@@ -10,6 +10,8 @@ npx vite build
 node scripts/enhance-seo-pages.mjs
 NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs
 node scripts/copy-selfhost-assets.mjs
+python3 deploy/repack-wheels.py dist/wasm
+node scripts/asou-preload-manifest.mjs
 node scripts/rebrand-dist.mjs
 node scripts/generate-sitemap.mjs
 node scripts/generate-security-headers.mjs

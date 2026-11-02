@@ -34,6 +34,7 @@ import {
   removeStoredItem,
 } from './utils/safe-storage.js';
 import { sanitizeTranslationHtml } from './utils/translation-html.js';
+import { scheduleToolPreload } from './utils/asou-tool-preload.js';
 import type { ToolCategory } from '@/types';
 
 const FAVORITE_STAR_PATHS = [
@@ -1622,3 +1623,5 @@ const init = async () => {
 };
 
 window.addEventListener('load', init);
+// 阿搜: warm the current tool's heavy wasm/wheel files in the background
+window.addEventListener('load', scheduleToolPreload);

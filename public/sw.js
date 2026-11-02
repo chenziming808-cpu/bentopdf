@@ -104,7 +104,7 @@ self.addEventListener('fetch', (event) => {
   if (isLocal && url.pathname.includes('/locales/')) {
     event.respondWith(networkFirstStrategy(event.request));
   } else if (shouldCache(url.pathname, isCDN)) {
-    event.respondWith(cacheFirstStrategyWithDedup(event.request, isCDN));
+    event.respondWith(cacheFirstStrategyWithDedup(event.request, isCDN, event));
   } else if (
     isLocal &&
     (url.pathname.endsWith('.html') ||
@@ -121,7 +121,12 @@ self.addEventListener('fetch', (event) => {
  * Cache-first strategy with deduplication
  * Ensures we only cache CDN OR local version, never both
  */
-async function cacheFirstStrategyWithDedup(request, isCDN) {
+// URL -> promise of an in-progress download+cache write, so a second request
+// for the same file (e.g. background preload + the tool itself) waits for the
+// first download instead of fetching the same bytes twice.
+const inFlightDownloads = new Map();
+
+async function cacheFirstStrategyWithDedup(request, isCDN, event) {
   const url = new URL(request.url);
   const fileName = url.pathname.split('/').pop();
 
@@ -134,27 +139,63 @@ async function cacheFirstStrategyWithDedup(request, isCDN) {
 
     // console.log(`📥 [Cache MISS] Downloading from ${isCDN ? 'CDN' : 'local'}:`, fileName);
 
-    const networkResponse = await fetch(request);
+    const pending = inFlightDownloads.get(request.url);
+    if (pending) {
+      await pending;
+      const nowCached = await findCachedFile(request.url);
+      if (nowCached) return nowCached;
+    }
+
+    // Register before the fetch so simultaneous requests also dedupe.
+    let settle = () => {};
+    const done = new Promise((resolve) => {
+      settle = () => {
+        if (inFlightDownloads.get(request.url) === done) {
+          inFlightDownloads.delete(request.url);
+        }
+        resolve();
+      };
+    });
+    if (!pending) inFlightDownloads.set(request.url, done);
+
+    let networkResponse;
+    try {
+      networkResponse = await fetch(request);
+    } catch (err) {
+      settle();
+      throw err;
+    }
 
     if (
       networkResponse &&
       networkResponse.status === 200 &&
       !networkResponse.redirected
     ) {
+      // Stream the response to the page right away (so large wasm/wheel
+      // downloads show real progress) and fill the cache in the background.
       const clone = networkResponse.clone();
-      const buffer = await clone.arrayBuffer();
-      if (buffer.byteLength > 0) {
-        const cache = await caches.open(CACHE_NAME);
-        await removeDuplicateCache(cache, fileName, isCDN);
-        await cache.put(
-          request,
-          new Response(buffer, {
-            status: networkResponse.status,
-            statusText: networkResponse.statusText,
-            headers: networkResponse.headers,
-          })
-        );
-      }
+      const cacheWrite = (async () => {
+        const buffer = await clone.arrayBuffer();
+        if (buffer.byteLength > 0) {
+          const cache = await caches.open(CACHE_NAME);
+          await removeDuplicateCache(cache, fileName, isCDN);
+          await cache.put(
+            request,
+            new Response(buffer, {
+              status: networkResponse.status,
+              statusText: networkResponse.statusText,
+              headers: networkResponse.headers,
+            })
+          );
+        }
+      })()
+        .catch((err) => {
+          console.warn('[ServiceWorker] Cache write failed:', fileName, err);
+        })
+        .finally(settle);
+      if (event) event.waitUntil(cacheWrite);
+    } else {
+      settle();
     }
 
     return networkResponse;
@@ -290,7 +331,7 @@ function getLocalPathForCDNUrl(pathname) {
  * Handles both local and CDN URLs
  */
 const CACHEABLE_EXTENSIONS =
-  /\.(js|mjs|css|wasm|whl|zip|json|png|jpg|jpeg|gif|svg|woff|woff2|ttf|gz|br)$/;
+  /\.(js|mjs|css|wasm|whl|zip|json|png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|gz|br)$/;
 
 function shouldCache(pathname, isCDN = false) {
   if (isCDN) {
