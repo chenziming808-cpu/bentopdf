@@ -37,3 +37,24 @@ describe('onPageReady file drops', () => {
     expect(late.defaultPrevented).toBe(false);
   });
 });
+
+describe('onPageReady early file selection', () => {
+  it('replays a file picked before the page listeners were attached', async () => {
+    vi.resetModules();
+    const { onPageReady } = await import('../js/i18n/i18n');
+    document.body.innerHTML = '<input type="file" id="file-input">';
+    const input = document.getElementById('file-input') as HTMLInputElement;
+    const file = new File(['%PDF-1.4'], 'a.pdf', { type: 'application/pdf' });
+    Object.defineProperty(input, 'files', { value: [file] });
+    const seen = vi.fn();
+    onPageReady(() => {
+      input.addEventListener('change', seen);
+    });
+    // The user picks a file before translations finish loading.
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(seen).not.toHaveBeenCalled();
+    await vi.waitFor(() => expect(seen).toHaveBeenCalledTimes(1));
+    await new Promise((r) => setTimeout(r, 20));
+    expect(seen).toHaveBeenCalledTimes(1);
+  });
+});

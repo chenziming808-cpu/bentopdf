@@ -159,6 +159,46 @@ const domReady = (): Promise<void> =>
 
 const I18N_READY_TIMEOUT_MS = 5000;
 
+// Tool pages attach their file-input / drop-zone listeners inside
+// onPageReady, which waits for the locale files. A file the user picks or
+// drops before that moment used to be silently lost, so remember it and
+// replay it once the page callbacks have run.
+const pendingInputs = new Set<HTMLInputElement>();
+let pendingDrop: { target: EventTarget; files: File[] } | null = null;
+let outstandingCallbacks = 0;
+let recorderInstalled = false;
+
+const recordChange = (event: Event): void => {
+  const el = event.target;
+  if (el instanceof HTMLInputElement && el.type === 'file')
+    pendingInputs.add(el);
+};
+
+const replayPendingInput = (): void => {
+  pendingInputs.forEach((input) => {
+    if (input.isConnected && input.files && input.files.length > 0)
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  pendingInputs.clear();
+  const drop = pendingDrop;
+  pendingDrop = null;
+  if (
+    drop &&
+    (!(drop.target instanceof Node) || drop.target.isConnected) &&
+    typeof DataTransfer !== 'undefined'
+  ) {
+    const dt = new DataTransfer();
+    drop.files.forEach((f) => dt.items.add(f));
+    drop.target.dispatchEvent(
+      new DragEvent('drop', {
+        bubbles: true,
+        cancelable: true,
+        dataTransfer: dt,
+      })
+    );
+  }
+};
+
 export const onPageReady = (callback: () => void | Promise<void>): void => {
   const i18nReady = Promise.race([
     initI18n().then(
@@ -167,14 +207,36 @@ export const onPageReady = (callback: () => void | Promise<void>): void => {
     ),
     new Promise<void>((resolve) => setTimeout(resolve, I18N_READY_TIMEOUT_MS)),
   ]);
-  const holdDrop = (event: DragEvent) => event.preventDefault();
-  window.addEventListener('dragover', holdDrop);
+  const holdDragOver = (event: DragEvent) => event.preventDefault();
+  const holdDrop = (event: DragEvent) => {
+    // A drop zone that is already wired up handled it itself.
+    if (event.defaultPrevented) return;
+    event.preventDefault();
+    const files = Array.from(event.dataTransfer?.files ?? []);
+    if (event.target && files.length > 0)
+      pendingDrop = { target: event.target, files };
+  };
+  window.addEventListener('dragover', holdDragOver);
   window.addEventListener('drop', holdDrop);
-  void Promise.all([domReady(), i18nReady]).then(() => {
-    window.removeEventListener('dragover', holdDrop);
-    window.removeEventListener('drop', holdDrop);
-    return callback();
-  });
+  outstandingCallbacks++;
+  if (!recorderInstalled) {
+    // Only the first wait of a page needs it; later changes reach the
+    // listeners the page callbacks attach.
+    recorderInstalled = true;
+    document.addEventListener('change', recordChange, true);
+  }
+  void Promise.all([domReady(), i18nReady])
+    .then(() => {
+      window.removeEventListener('dragover', holdDragOver);
+      window.removeEventListener('drop', holdDrop);
+      document.removeEventListener('change', recordChange, true);
+      return callback();
+    })
+    .finally(() => {
+      // Once every waiting page callback has wired its listeners, replay a
+      // file the user picked or dropped too early (it was lost before).
+      if (--outstandingCallbacks === 0) replayPendingInput();
+    });
 };
 
 export const t = (key: string, options?: Record<string, unknown>): string => {
